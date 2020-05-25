@@ -1,7 +1,4 @@
-﻿  main.cpp
-C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,15): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+﻿  Не удается найти указанный файл.
   Создание кода
   1 of 1169 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

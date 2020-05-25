@@ -15,6 +15,7 @@
 class ObjectController : public Component
 {
 	bool moved = false;
+	bool a = false;
 public:
 	ObjectController()
 	{
@@ -24,21 +25,21 @@ public:
 
 	virtual void Update()
 	{
-		if (moved) {
+		if (a) {
 			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(Vector3(.1, .0, .0));
+			pTransform->Translate(Vector3(0.001, .0, .0));
 			pTransform->Rotate(Vector3(0., 0.01, 0.));
-			moved = false;
+			if (pTransform->GetPosition().x > 3)
+				a = false;
 		} else {
 			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(Vector3(-.1, .0, .0));
+			pTransform->Translate(Vector3(-0.001, .0, .0));
 			pTransform->Rotate(Vector3(0., 0.01, 0.));
-			moved = true;
+			if (pTransform->GetPosition().x < 0)
+				a = true;
 		}
+		moved = false;
 	}
-
-private:
-
 };
 
 /**
@@ -94,6 +95,17 @@ public:
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialDiffuse();
 			pObject1->AddComponent(new ObjectController);
+			scene.AddObject(pObject1);
+		}
+
+		{
+			Object* pObject1 = new Object();
+			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
+			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
+			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
+			pObject1->m_pMesh = object;
+			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
+			pObject1->m_pMaterial = new MaterialDiffuse();
 			scene.AddObject(pObject1);
 		}
 
