@@ -10,7 +10,26 @@
 
 #include "Tasks/Task.h"
 #include "Tasks/ObjectRotator.h"
+#include "CameraController.h"
 
+class ObjectController : public Component
+{
+public:
+	ObjectController()
+	{
+	}
+
+	virtual ~ObjectController() {}
+
+	virtual void Update()
+	{
+		Transform* pTransform = m_pObject->m_pTransform;
+		pTransform->Translate(Vector3(.0, .0001, .0));
+	}
+
+private:
+
+};
 
 /**
 * @brief Shows how to load mesh from obj-file.
@@ -35,14 +54,23 @@ public:
 		std::cout << std::endl;
 		Scene& scene = Application::Instance().GetScene();
 
-		// Camera
+		//camera
 		{
-			Object* pCameraObj = new Object();
-			pCameraObj->m_pTransform = new Transform(Vector3(0.0f, 2.0f, -10.0f), Vector3(2.0f, 0.0f, 0.0f));
+			auto head_controller = new CameraControllerHead;
+
+			Object* Body = new Object();
+			Body->m_pTransform = new Transform(Vector3(0.0f, 0.1f, -10.0f), Vector3(0.0f, 0.0f, 0.0f));
+			auto body_controller = new CameraControllerBody(head_controller);
+			Body->AddComponent(body_controller);
+			scene.AddObject(Body);
+
+			Object* Head = new Object();
 			Camera* pCamera = new Camera();
-			pCameraObj->AddComponent(pCamera);
-			//pCameraObj->AddComponent(new ObjectRotator(0, 45, 0));
+			Head->m_pTransform = new Transform(Vector3(0.0f, .1f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+			Head->AddComponent(pCamera);
+			Head->AddComponent(head_controller);
 			scene.SetCamera(pCamera);
+			Head->m_pTransform->SetParent(Body->m_pTransform);
 		}
 
 		
@@ -55,8 +83,8 @@ public:
 			pObject1->m_pMesh = object;
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialDiffuse();
-			pObject1->AddComponent(new ObjectRotator(0, 45, 0));
-
+			//pObject1->AddComponent(new ObjectRotator(0, 45, 0));
+			pObject1->AddComponent(new ObjectController);
 			scene.AddObject(pObject1);
 		}
 
@@ -81,11 +109,7 @@ public:
 
 	virtual void Update()
 	{
-		
-		auto vecVert = object->getMeshVertices();
-		for (auto& it : vecVert) {
-			std::cout << it.x << ' ' << it.y << ' ' << it.z << std::endl;
-		}
 
 	}
 };
+
