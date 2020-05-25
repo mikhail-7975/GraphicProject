@@ -11,6 +11,12 @@ MaterialUnlit::MaterialUnlit(const Vector3 & color)
 	m_psFileName = "ShaderUnlit";	
 }
 
+MaterialUnlit::MaterialUnlit()
+	: m_color(Vector3(0., 1., 0.), 1)
+{
+	m_vsFileName = "ShaderUnlit";
+	m_psFileName = "ShaderUnlit";
+}
 // TODO: Реализовать переключение Graphics API при нажатии на кнопки (1 - DirectX 11, 2 - OpenGL 2.0, 9 - DirectX 9)
 // и отладить на этом механизм использования функций Init() и Deinit()
 void MaterialUnlit::Init()

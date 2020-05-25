@@ -4,9 +4,11 @@
 #include "GraphicsEngine/Transform.h"
 #include "GraphicsEngine/Object.h"
 #include "GraphicsEngine/Scene.h"
+#include "GraphicsEngine/SceneUtils.h"
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Materials/MaterialDiffuse.h"
 #include "GraphicsEngine/Light.h"
+
 
 #include "Tasks/Task.h"
 #include "Tasks/ObjectRotator.h"
@@ -25,7 +27,11 @@ public:
 
 	virtual void Update()
 	{
+		Vector3 cameraPos = SceneUtils::GetEyePosition();
+		//std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
 		double dt = Time::GetDeltaTime();
+
+
 		if (a) {
 			Transform* pTransform = m_pObject->m_pTransform;
 			pTransform->Translate(dt * Vector3(1., .0, .0));
@@ -43,21 +49,24 @@ public:
 	}
 };
 
+
+
 /**
 * @brief Shows how to load mesh from obj-file.
+
 * Key code is situated in the class MeshObjFile.
 */
 class TaskProject : public Task
 {
-	MeshObjFile* object;
+	MeshObjFile* object1;
+	MeshObjFile* object2;
 
 public:	
 	TaskProject() {
-		object = new MeshObjFile("MeshHouse.obj");
-		std::cout << "Test commit" << std::endl;
+		object1 = new MeshObjFile("MeshCube.obj");
+		object2 = new MeshObjFile("MeshCube.obj");
 	}
-
-
+	
 public:
 	virtual ~TaskProject() { }
 
@@ -92,9 +101,9 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
-			pObject1->m_pMesh = object;
+			pObject1->m_pMesh = object1;
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
-			pObject1->m_pMaterial = new MaterialDiffuse();
+			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
 			pObject1->AddComponent(new ObjectController);
 			scene.AddObject(pObject1);
 		}
@@ -104,9 +113,9 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
-			pObject1->m_pMesh = object;
+			pObject1->m_pMesh = object2;
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
-			pObject1->m_pMaterial = new MaterialDiffuse();
+			pObject1->m_pMaterial = new MaterialHighway();
 			scene.AddObject(pObject1);
 		}
 
@@ -126,12 +135,15 @@ public:
 	}
 
 	virtual void Denit() {
-		object->Deinit();
+		object1->Deinit();
 	}
 
 	virtual void Update()
 	{
-
+		auto vec = object1->getMeshVertices();
+		for (auto& it : vec) {
+			//std::cout << it.x << " " << it.y << " " << it.z << std::endl;
+		}
 	}
 };
 

@@ -54,6 +54,9 @@ public:
 	*/
 	void Update() const;
 
+	const Mesh& GetMesh() const;
+
+	const Vector3& GetLocalPosition() const;
 	/**
 	* @brief Contains World matrix (position, rotation, scale).
 	*/

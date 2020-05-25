@@ -93,3 +93,14 @@ void Object::Update() const
 		}
 	}
 }
+
+const Mesh& Object::GetMesh() const
+{
+	return *m_pMesh;
+}
+
+const Vector3& Object::GetLocalPosition() const
+{
+	return m_pTransform->GetLocalPosition();
+	// TODO: вставьте здесь оператор return
+}

@@ -15,7 +15,7 @@ public:
 	* @param [in] color Color of the object.
 	*/
 	MaterialUnlit(const Vector3 & color);
-
+	MaterialUnlit();
 	/**
 	* @brief Initialize the material and necessary data here.
 	*/

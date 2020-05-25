@@ -1,11 +1,37 @@
-﻿  main.cpp
+﻿  Camera.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  ObjectStorage.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialDiffuse.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialSand.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialUnlit.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialUnlitSimple.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  Object.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  Scene.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  main.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,15): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  CubeMaterials.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  CylinderMaterials.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  HighwayMaterials.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialCoolEarth.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialEarth.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
   Создание кода
-  1 of 1169 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  0 of 1141 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   vs2010.vcxproj -> C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\vs2010\..\BUILD\Release\GraphicsEngine.exe
   ..\SDKs\OpenGL\dll\freeglut.dll
