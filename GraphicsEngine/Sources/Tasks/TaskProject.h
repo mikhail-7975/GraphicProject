@@ -59,6 +59,7 @@ public:
 
 			Object* Head = new Object();
 			Camera* pCamera = new Camera();
+			Head->makeMovable();
 			Head->m_pTransform = new Transform(Vector3(0.0f, .1f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
 			Head->AddComponent(pCamera);
 			Head->AddComponent(head_controller);
@@ -74,6 +75,7 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
+			pObject1->makeMovable();
 			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
 			pObject1->m_pTransform = new Transform(3, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
@@ -88,6 +90,7 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
+			pObject1->makeNonMovable();
 			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialHighway();
@@ -137,10 +140,13 @@ public:
 					Vector3 currentPos2 = objects[i2]->m_pTransform->GetPosition();
 					Vector3 delta = currentPos1 - currentPos2;
 					std::cout << dist << std::endl;
-					if (dist < 1) {
-						objects[i1]->m_pTransform->Translate(delta);
+					if (dist < 1.5) {
+						if(objects[i1]->movable)
+							objects[i1]->m_pTransform->Translate(delta * 0.01);
+						if (objects[i2]->movable)
+							objects[i2]->m_pTransform->Translate(-delta * 0.01);
 						//objects[i2]->m_pTransform->Translate(delta);
-						std::cout << " COLLISION!!!" << std::endl;
+						//std::cout << " COLLISION!!!" << std::endl;
 					}
 				}
 			}
