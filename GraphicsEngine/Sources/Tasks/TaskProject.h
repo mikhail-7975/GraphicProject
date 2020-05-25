@@ -25,16 +25,17 @@ public:
 
 	virtual void Update()
 	{
+		double dt = Time::GetDeltaTime();
 		if (a) {
 			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(Vector3(0.001, .0, .0));
-			pTransform->Rotate(Vector3(0., 0.01, 0.));
+			pTransform->Translate(dt * Vector3(1., .0, .0));
+			pTransform->Rotate(dt * Vector3(0., 10., 0.));
 			if (pTransform->GetPosition().x > 3)
 				a = false;
 		} else {
 			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(Vector3(-0.001, .0, .0));
-			pTransform->Rotate(Vector3(0., 0.01, 0.));
+			pTransform->Translate(dt * Vector3(-1., .0, .0));
+			pTransform->Rotate(dt * Vector3(0., 10., 0.));
 			if (pTransform->GetPosition().x < 0)
 				a = true;
 		}
