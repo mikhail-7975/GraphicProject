@@ -23,6 +23,7 @@ class TaskProject : public Task
 public:	
 	TaskProject() {
 		object = new MeshObjFile("MeshHouse.obj");
+		std::cout << "Test commit" << std::endl;
 	}
 
 
