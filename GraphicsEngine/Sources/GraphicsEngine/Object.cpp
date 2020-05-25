@@ -71,6 +71,11 @@ void Object::AddComponent(Component * pComponent)
 	pComponent->Init(this);
 }
 
+void Object::AddComponent(std::string name, Component* pComponent)
+{
+	m_components_map.insert(std::pair<std::string, Component*>(name, pComponent));
+}
+
 bool Object::IsActive() const
 {
 	return m_isActive;

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <list>
 #include <string>
+#include <map>
 
 class Material;
 class Mesh;
@@ -34,7 +35,7 @@ public:
 	* @param [in] pComponent Component to add.
 	*/
 	void AddComponent(Component * pComponent);
-
+	void AddComponent(std::string name, Component* pComponent);
 	/**
 	* @brief Is the object active ?
 	* If true then the object is rendered and Update() is called at each frame.
@@ -76,6 +77,8 @@ public:
 	* @brief Contains custom scripts.
 	*/
 	std::list<Component *> m_components;
+
+	std::map<std::string, Component*> m_components_map;
 
 	/**
 	* @brief The object's name.

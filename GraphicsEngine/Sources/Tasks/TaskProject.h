@@ -15,7 +15,7 @@
 #include "CameraController.h"
 
 #include "Game (final project)/ObjectController.h"
-
+#include "Game (final project)/CollisionDetector.h"
 
 /**
 * @brief Shows how to load mesh from obj-file.
@@ -26,10 +26,13 @@ class TaskProject : public Task
 {
 	MeshObjFile* object1;
 	MeshObjFile* object2;
-	//Scene& scene;
+	std::vector<Object*> objects;
+
+	size_t count;
 
 public:	
 	TaskProject() {
+		count = 0;
 		object1 = new MeshObjFile("MeshCube.obj");
 		object2 = new MeshObjFile("MeshCube.obj");
 		std::cout << std::endl;
@@ -73,8 +76,10 @@ public:
 			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
-			pObject1->AddComponent(new ObjectController);
+			pObject1->AddComponent(new ObjectMovingController);
+			pObject1->AddComponent("ObjectMovingController", new ObjectMovingController);
 			scene.AddObject(pObject1);
+			objects.push_back(pObject1);
 		}
 
 		{
@@ -86,6 +91,7 @@ public:
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialHighway();
 			scene.AddObject(pObject1);
+			objects.push_back(pObject1);
 		}
 
 		// Lightsource #1 - Directional
@@ -112,10 +118,24 @@ public:
 		Scene& scene = Application::Instance().GetScene();
 		auto vecObj1 = scene.GetObjects();
 		auto vecObj2 = scene.GetObjects();
+		
+		for (auto& it : vecObj1) {
+			//std::cout << it->m_pTransform->GetPosition().x << std::endl;
+		}
+		
+		//for (size_t i = 0; i < 100000000; i++);
+		
+		
+		if (objects.size() <= 1) return;
 
-		for (size_t i1 = 0; i1 < vecObj1.size(); ++i1) {
-			for (size_t i2 = i1; i2 < vecObj2.size(); ++i2) {
-				//detectCollision(vecObj1[i1], vecObj2[i2]);
+		for (size_t i1 = 0; i1 < objects.size(); ++i1) {
+			for (size_t i2 = i1 ; i2 < objects.size(); ++i2) {
+				if (i1 != i2) {
+					auto dist = detectCollision(*objects[i1], *objects[i2]);
+					std::cout << dist << std::endl;
+					if (dist < 1)
+						std::cout << " COLLISION!!!" << std::endl;
+				}
 			}
 		}
 	}

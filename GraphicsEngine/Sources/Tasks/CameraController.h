@@ -44,7 +44,7 @@ public:
                 // TODO : Task08
                 direction += (mousePosPrev - mousePos);
 
-                pTransform->Rotate(0.1 * Vector3(direction.y, direction.x, direction.z));
+                pTransform->Rotate(0.1 * Vector3(direction.y, direction.x, 0));
             }
             mousePosPrev = mousePos;
         }

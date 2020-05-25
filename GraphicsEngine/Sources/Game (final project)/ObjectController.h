@@ -13,38 +13,47 @@
 #include "Tasks/Task.h"
 #include "Tasks/ObjectRotator.h"
 
-class ObjectController : public Component
+class ObjectMovingController : public Component
 {
-	bool moved = false;
-	bool a = false;
+	bool movable;
+	bool a;
 public:
-	ObjectController()
+	ObjectMovingController()
 	{
+		a = true;
+		movable = true;
 	}
 
-	virtual ~ObjectController() {}
+	void setMovableTrue() {
+		movable = true;
+	}
+
+	void setMovableFalse() {
+		movable = false;
+	}
+
+	virtual ~ObjectMovingController() {}
 
 	virtual void Update()
 	{
 		Vector3 cameraPos = SceneUtils::GetEyePosition();
 		//std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
-		double dt = Time::GetDeltaTime();
-
-
-		if (a) {
-			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(dt * Vector3(1., .0, .0));
-			pTransform->Rotate(dt * Vector3(0., 10., 0.));
-			if (pTransform->GetPosition().x > 3)
-				a = false;
+		if (movable) {
+			double dt = Time::GetDeltaTime();
+			if (a) {
+				Transform* pTransform = m_pObject->m_pTransform;
+				pTransform->Translate(dt * Vector3(1., .0, .0));
+				//pTransform->Rotate(dt * Vector3(0., 10., 0.));
+				if (pTransform->GetPosition().x > 3)
+					a = false;
+			}
+			else {
+				Transform* pTransform = m_pObject->m_pTransform;
+				pTransform->Translate(dt * Vector3(-1., .0, .0));
+				//pTransform->Rotate(dt * Vector3(0., 10., 0.));
+				if (pTransform->GetPosition().x < 0)
+					a = true;
+			}
 		}
-		else {
-			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(dt * Vector3(-1., .0, .0));
-			pTransform->Rotate(dt * Vector3(0., 10., 0.));
-			if (pTransform->GetPosition().x < 0)
-				a = true;
-		}
-		moved = false;
 	}
 };
