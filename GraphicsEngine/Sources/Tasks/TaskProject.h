@@ -14,6 +14,8 @@
 #include "Tasks/ObjectRotator.h"
 #include "CameraController.h"
 
+#include "Game (final project)/ObjectController.h"
+/*
 class ObjectController : public Component
 {
 	bool moved = false;
@@ -47,7 +49,7 @@ public:
 		}
 		moved = false;
 	}
-};
+};*/
 
 
 
