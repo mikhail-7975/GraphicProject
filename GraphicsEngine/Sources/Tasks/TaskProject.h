@@ -14,6 +14,7 @@
 
 class ObjectController : public Component
 {
+	bool moved = false;
 public:
 	ObjectController()
 	{
@@ -23,8 +24,17 @@ public:
 
 	virtual void Update()
 	{
-		Transform* pTransform = m_pObject->m_pTransform;
-		pTransform->Translate(Vector3(.0, .0001, .0));
+		if (moved) {
+			Transform* pTransform = m_pObject->m_pTransform;
+			pTransform->Translate(Vector3(.1, .0, .0));
+			pTransform->Rotate(Vector3(0., 0.01, 0.));
+			moved = false;
+		} else {
+			Transform* pTransform = m_pObject->m_pTransform;
+			pTransform->Translate(Vector3(-.1, .0, .0));
+			pTransform->Rotate(Vector3(0., 0.01, 0.));
+			moved = true;
+		}
 	}
 
 private:
@@ -83,7 +93,6 @@ public:
 			pObject1->m_pMesh = object;
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialDiffuse();
-			//pObject1->AddComponent(new ObjectRotator(0, 45, 0));
 			pObject1->AddComponent(new ObjectController);
 			scene.AddObject(pObject1);
 		}
