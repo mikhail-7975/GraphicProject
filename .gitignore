@@ -1,4 +1,6 @@
 .obj
 .iobj
 .tlog
+.log
+.exe
 .pdb

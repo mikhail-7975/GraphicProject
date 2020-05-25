@@ -32,6 +32,7 @@ public:
 	TaskProject() {
 		object1 = new MeshObjFile("MeshCube.obj");
 		object2 = new MeshObjFile("MeshCube.obj");
+		std::cout << std::endl;
 		//Scene& scene = Application::Instance().GetScene();
 	}
 	

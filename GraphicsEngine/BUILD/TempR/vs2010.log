@@ -1,12 +1,11 @@
-﻿  Не удается найти указанный файл.
-  main.cpp
+﻿  main.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\Tasks\FpsCounter.h(45,15): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
   Создание кода
-  42 of 1141 functions ( 3.7%) were compiled, the rest were copied from previous compilation.
-    7 functions were new in current compilation
-    105 functions had inline decision re-evaluated but remain unchanged
+  24 of 1142 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
+    8 functions were new in current compilation
+    28 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   vs2010.vcxproj -> C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\vs2010\..\BUILD\Release\GraphicsEngine.exe
   ..\SDKs\OpenGL\dll\freeglut.dll
