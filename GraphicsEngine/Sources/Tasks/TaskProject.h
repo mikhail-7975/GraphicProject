@@ -64,6 +64,7 @@ public:
 			Head->AddComponent(head_controller);
 			scene.SetCamera(pCamera);
 			Head->m_pTransform->SetParent(Body->m_pTransform);
+			objects.push_back(Head);
 		}
 
 		
@@ -74,7 +75,7 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
 			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
-			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
+			pObject1->m_pTransform = new Transform(3, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
 			pObject1->AddComponent(new ObjectMovingController);
 			pObject1->AddComponent("ObjectMovingController", new ObjectMovingController);
@@ -132,9 +133,15 @@ public:
 			for (size_t i2 = i1 ; i2 < objects.size(); ++i2) {
 				if (i1 != i2) {
 					auto dist = detectCollision(*objects[i1], *objects[i2]);
+					Vector3 currentPos1 = objects[i1]->m_pTransform->GetPosition();
+					Vector3 currentPos2 = objects[i2]->m_pTransform->GetPosition();
+					Vector3 delta = currentPos1 - currentPos2;
 					std::cout << dist << std::endl;
-					if (dist < 1)
+					if (dist < 1) {
+						objects[i1]->m_pTransform->Translate(delta);
+						//objects[i2]->m_pTransform->Translate(delta);
 						std::cout << " COLLISION!!!" << std::endl;
+					}
 				}
 			}
 		}

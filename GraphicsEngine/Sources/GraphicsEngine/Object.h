@@ -58,6 +58,10 @@ public:
 	const Mesh& GetMesh() const;
 
 	const Transform& GetTransform();
+
+	void makeMovable();
+
+	void makeNonMovable();
 	/**
 	* @brief Contains World matrix (position, rotation, scale).
 	*/
@@ -90,4 +94,5 @@ public:
 	* If true then the object is rendered and Update() is called at each frame.
 	*/
 	bool m_isActive;
+	bool movable;
 };

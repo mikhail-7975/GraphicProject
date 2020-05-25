@@ -110,3 +110,13 @@ const Transform& Object::GetTransform()
 	// TODO: вставьте здесь оператор return
 }
 
+void Object::makeMovable()
+{
+	movable = true;
+}
+
+void Object::makeNonMovable()
+{
+	movable = false;
+}
+

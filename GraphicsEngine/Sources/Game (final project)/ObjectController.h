@@ -36,7 +36,7 @@ public:
 
 	virtual void Update()
 	{
-		Vector3 cameraPos = SceneUtils::GetEyePosition();
+		//Vector3 cameraPos = SceneUtils::GetEyePosition();
 		//std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
 		if (movable) {
 			double dt = Time::GetDeltaTime();
