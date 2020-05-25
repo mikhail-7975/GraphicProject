@@ -15,42 +15,6 @@
 #include "CameraController.h"
 
 #include "Game (final project)/ObjectController.h"
-/*
-class ObjectController : public Component
-{
-	bool moved = false;
-	bool a = false;
-public:
-	ObjectController()
-	{
-	}
-
-	virtual ~ObjectController() {}
-
-	virtual void Update()
-	{
-		Vector3 cameraPos = SceneUtils::GetEyePosition();
-		//std::cout << cameraPos.x << " " << cameraPos.y << " " << cameraPos.z << std::endl;
-		double dt = Time::GetDeltaTime();
-
-
-		if (a) {
-			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(dt * Vector3(1., .0, .0));
-			pTransform->Rotate(dt * Vector3(0., 10., 0.));
-			if (pTransform->GetPosition().x > 3)
-				a = false;
-		} else {
-			Transform* pTransform = m_pObject->m_pTransform;
-			pTransform->Translate(dt * Vector3(-1., .0, .0));
-			pTransform->Rotate(dt * Vector3(0., 10., 0.));
-			if (pTransform->GetPosition().x < 0)
-				a = true;
-		}
-		moved = false;
-	}
-};*/
-
 
 
 /**
@@ -62,11 +26,13 @@ class TaskProject : public Task
 {
 	MeshObjFile* object1;
 	MeshObjFile* object2;
+	//Scene& scene;
 
 public:	
 	TaskProject() {
 		object1 = new MeshObjFile("MeshCube.obj");
 		object2 = new MeshObjFile("MeshCube.obj");
+		//Scene& scene = Application::Instance().GetScene();
 	}
 	
 public:
@@ -103,7 +69,7 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
-			pObject1->m_pMesh = object1;
+			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
 			pObject1->AddComponent(new ObjectController);
@@ -115,7 +81,7 @@ public:
 			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
 			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
-			pObject1->m_pMesh = object2;
+			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
 			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialHighway();
 			scene.AddObject(pObject1);
@@ -137,14 +103,19 @@ public:
 	}
 
 	virtual void Denit() {
-		object1->Deinit();
+		
 	}
 
 	virtual void Update()
 	{
-		auto vec = object1->getMeshVertices();
-		for (auto& it : vec) {
-			//std::cout << it.x << " " << it.y << " " << it.z << std::endl;
+		Scene& scene = Application::Instance().GetScene();
+		auto vecObj1 = scene.GetObjects();
+		auto vecObj2 = scene.GetObjects();
+
+		for (size_t i1 = 0; i1 < vecObj1.size(); ++i1) {
+			for (size_t i2 = i1; i2 < vecObj2.size(); ++i2) {
+				//detectCollision(vecObj1[i1], vecObj2[i2]);
+			}
 		}
 	}
 };
