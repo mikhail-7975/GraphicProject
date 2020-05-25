@@ -32,6 +32,7 @@ public:
 
 	virtual void Init()
 	{
+		std::cout << std::endl;
 		Scene& scene = Application::Instance().GetScene();
 
 		// Camera
@@ -80,6 +81,7 @@ public:
 
 	virtual void Update()
 	{
+		
 		auto vecVert = object->getMeshVertices();
 		for (auto& it : vecVert) {
 			std::cout << it.x << ' ' << it.y << ' ' << it.z << std::endl;

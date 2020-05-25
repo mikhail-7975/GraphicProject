@@ -12,7 +12,25 @@
 #include "Tasks/Task08.h"
 #include "Tasks/TaskProject.h" 
 
+#include <thread>
+#include <mutex>
 // The application's entry point
+std::mutex mtx; 
+
+void render(GraphicsEngine* engine) {
+	while (engine->IsRunning()) {
+		engine->Render();
+	}
+}
+
+void update(Task* pTask, GraphicsEngine* engine) {
+	while (engine->IsRunning()) {
+		pTask->Update();
+	}
+	
+}
+  
+
 int main(int argc, char ** argv)
 {
 	// Remember argc, argv
@@ -39,11 +57,15 @@ int main(int argc, char ** argv)
 		engine.Init();
         pTask->Init();
 
+		//std::thread updateThread(update, pTask, &engine);
+		//std::thread renderThread(render, &engine);
 		while (engine.IsRunning())
 		{
             pTask->Update();
 			engine.Render();
 		}
+		//renderThread.join();
+		//updateThread.join();
 
         delete pTask;
 		engine.Deinit();
