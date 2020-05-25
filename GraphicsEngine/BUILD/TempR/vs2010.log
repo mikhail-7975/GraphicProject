@@ -1,10 +1,11 @@
-﻿  Camera.cpp
+﻿  Не удается найти указанный файл.
+  Camera.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
   ObjectStorage.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-  MaterialDiffuse.cpp
-C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
   MaterialSand.cpp
+C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  MaterialDiffuse.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
   MaterialUnlit.cpp
 C:\Users\mikhail7975\Documents\GitHub\GraphicProject\GraphicsEngine\Sources\GraphicsEngine\Math.h(75,14): warning C4244: return: преобразование "double" в "float", возможна потеря данных

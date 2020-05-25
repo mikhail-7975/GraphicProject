@@ -99,8 +99,9 @@ const Mesh& Object::GetMesh() const
 	return *m_pMesh;
 }
 
-const Vector3& Object::GetLocalPosition() const
+const Transform& Object::GetTransform()
 {
-	return m_pTransform->GetLocalPosition();
+	return *m_pTransform;
 	// TODO: вставьте здесь оператор return
 }
+
