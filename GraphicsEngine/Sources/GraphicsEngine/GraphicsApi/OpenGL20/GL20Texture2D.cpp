@@ -8,7 +8,7 @@ GL20Texture2D::GL20Texture2D(const char * filepath)
 	FIBITMAP * pBitmap = FreeImage_Load( FreeImage_GetFileType(filepath, 0), filepath);
 	FIBITMAP * pImage = FreeImage_ConvertTo32Bits(pBitmap);
 	
-	FreeImage_FlipVertical(pImage); // OpenGL flips texture upside-down, so we should flip too.
+	FreeImage_FlipVertical(pImage); // OpenGL flips texture upside-down, so we should flip too. //can be commented. 
 	
 	m_width  = FreeImage_GetWidth(pImage);
 	m_height = FreeImage_GetHeight(pImage);

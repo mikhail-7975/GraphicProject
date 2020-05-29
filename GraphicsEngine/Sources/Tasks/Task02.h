@@ -32,9 +32,9 @@ public:
 		// Camera
 		{
 			Object * pCameraObj = new Object();
-			pCameraObj->m_pTransform = new Transform( Vector3(0, 1.5, -3), Vector3(0.0f, 0.0f, 0.0f));
+			pCameraObj->m_pTransform = new Transform( Vector3(0, 1.5, -10), Vector3(0.0f, 0.0f, 0.0f));
 			Camera * pCamera = new Camera();
-			pCamera->SetFovY(90);
+			//pCamera->SetFovY(90);
 			pCamera->SetNearPlane(0.01f);
 			pCamera->SetFarPlane(100);
 			pCameraObj->AddComponent( pCamera );
@@ -46,18 +46,18 @@ public:
 		// Object # 1 - Cube (is morphed to sphere)
 		{
 			Object * pObject = new Object();
-			pObject->m_pTransform	= new Transform( Vector3(0, 0, 0), Vector3(0, 30, 0) );
+			pObject->m_pTransform	= new Transform( Vector3(-1.5, 0, 0), Vector3(0, 30, 0) );
 			pObject->m_pMesh		= new MeshCube(10);			
             pObject->m_pMaterial	= new MaterialUnlitCube();   
 			
-			//scene.AddObject( pObject );
+			scene.AddObject( pObject );
 		}
 
 		// Object #2 - Cylinder (is twisted)
         {
 			Object * pObject = new Object();
-			pObject->m_pTransform	= new Transform( Vector3(0, 0, 0), Vector3(0, 30, 0) );
-			pObject->m_pMesh		= new MeshCylinder(6);			
+			pObject->m_pTransform	= new Transform( Vector3(1.5, 0, 0), Vector3(0, 30, 0) );
+			pObject->m_pMesh		= new MeshCylinder(10);			
 			//pObject->m_pMaterial    = new MaterialUnlitSimple();
 			pObject->m_pMaterial = new MaterialUnlitCylinder();
 			

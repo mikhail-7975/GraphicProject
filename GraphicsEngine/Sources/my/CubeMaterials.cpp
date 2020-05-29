@@ -35,13 +35,13 @@ void MaterialUnlitCube::SetMaterial(const Object* pObject)
 
 	const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 	double time_ = sin(Time::GetTime()) * sin(Time::GetTime());
-	const Vector4 time(time_, 0, 0, 0);//    раскомменчено; 
+	const Vector4 time(time_, 0, 0, 0);
 
 	SetMaterialBegin();
 	{
 		SetVertexShaderBegin();
 		SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-		SetVertexShaderVector4("time", time);//  раскомменчено  
+		SetVertexShaderVector4("time", time);
 		SetVertexShaderVector4("constColor", Vector4(1, 1, 1, 1));
 		SetVertexShaderEnd();
 

@@ -21,11 +21,11 @@ uniform mat4 matrixWorldViewProjBottomMatrix;
 void main()
 {
 	vec3 pos = position;
-	float h = pos.y + 1.;
-	mat4 rotationMatrix = matrixWorldViewProjT + matrixWorldViewProjTopMatrix * h;//+ matrixWorldViewProjT;// + matrixWorldViewProjBottomMatrix * h;// * (1. - h);
-	
+	float h = (pos.y + 1.) / 2.;
+	//mat4 rotationMatrix = matrixWorldViewProjBottomMatrix * (1. - h) + matrixWorldViewProjTopMatrix * h;//+ matrixWorldViewProjT;// + matrixWorldViewProjBottomMatrix * h;// * (1. - h);
+	mat4 rotMatrix = matrixWorldViewProjTopMatrix * h +  matrixWorldViewProjBottomMatrix * (1. - h);
 
 
-	gl_Position = vec4(pos, 1.) * rotationMatrix;
-	gl_FrontColor = /*color*/vec4(vec3(0., pos.y, 0.), 0.);// * constColor;
+	gl_Position = vec4(pos, 1.)  * rotMatrix;
+	gl_FrontColor = color* constColor; //vec4(vec3(0., pos.y, 0.), 0.);//, 0.);// 
 }

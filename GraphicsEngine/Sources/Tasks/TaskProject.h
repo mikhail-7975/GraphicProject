@@ -35,8 +35,6 @@ public:
 		count = 0;
 		object1 = new MeshObjFile("MeshCube.obj");
 		object2 = new MeshObjFile("MeshCube.obj");
-		std::cout << std::endl;
-		//Scene& scene = Application::Instance().GetScene();
 	}
 	
 public:
@@ -44,31 +42,56 @@ public:
 
 	virtual void Init()
 	{
-		std::cout << std::endl;
 		Scene& scene = Application::Instance().GetScene();
 
-		//camera
+		// Camera
 		{
-			auto head_controller = new CameraControllerHead;
+			auto headController = new CameraControllerHead();
 
 			Object* Body = new Object();
-			Body->m_pTransform = new Transform(Vector3(0.0f, 0.1f, -10.0f), Vector3(0.0f, 0.0f, 0.0f));
-			auto body_controller = new CameraControllerBody(head_controller);
-			Body->AddComponent(body_controller);
+				Body->m_pTransform = new Transform(Vector3(0.0f, 0.1f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+				auto bodyController = new CameraControllerBody(headController);
+				Body->AddComponent(bodyController);
 			scene.AddObject(Body);
 
 			Object* Head = new Object();
-			Camera* pCamera = new Camera();
-			Head->makeMovable();
-			Head->m_pTransform = new Transform(Vector3(0.0f, .1f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
-			Head->AddComponent(pCamera);
-			Head->AddComponent(head_controller);
-			scene.SetCamera(pCamera);
-			Head->m_pTransform->SetParent(Body->m_pTransform);
-			objects.push_back(Head);
-		}
+				Head->m_pTransform = new Transform(Vector3(0.0f, 0.1f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+				Camera* pCamera = new Camera();
+				Head->AddComponent(pCamera);
+				Head->AddComponent(headController);
+				Head->m_pTransform->SetParent(Body->m_pTransform);
 
+			scene.SetCamera(pCamera);
+
+		}
+		/*{
+			Object* pCameraObj = new Object();
+			pCameraObj->m_pTransform = new Transform(Vector3(0, 0, -5), Vector3(0.0f, 0.0f, 0.0f));
+			Camera* pCamera = new Camera();
+			//pCamera->SetFovY(90);
+			pCamera->SetNearPlane(0.01f);
+			pCamera->SetFarPlane(100);
+			pCameraObj->AddComponent(pCamera);
+			pCameraObj->AddComponent(new CameraControllerBody);
+
+			scene.SetCamera(pCamera);
+		}*/
 		
+		// Camera
+		/*{
+			Object* body = new Object();
+			body->m_pTransform = new Transform(Vector3(0.0f, 0.5f, -5.0f), Vector3(0.0f, 0.0f, 0.0f));
+			Object* pCameraObj = new Object();
+			Camera* pCamera = new Camera();
+			pCameraObj->m_pTransform = new Transform(Vector3(0.0f, 0.0f, 0.0f), Vector3(10.0f, 0.0f, 0.0f));
+			pCameraObj->AddComponent(pCamera);
+			pCameraObj->m_pTransform->SetParent(body->m_pTransform);
+			pCameraObj->AddComponent(new NewCameraController);
+			body->AddComponent(new CameraController(true, pCameraObj->m_pTransform));
+			scene.SetCamera(pCamera);
+			scene.AddObject(body);
+		}*/
+
 		// Object #1 - Earth
 		{
 			Object* pObject1 = new Object();
@@ -80,6 +103,21 @@ public:
 			pObject1->m_pTransform = new Transform(3, 0, 0, 0, 0, 0, 1, 1, 1);
 			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
 			pObject1->AddComponent(new ObjectMovingController);
+			pObject1->AddComponent("ObjectMovingController", new ObjectMovingController);
+			scene.AddObject(pObject1);
+			objects.push_back(pObject1);
+		}
+
+		{
+			Object* pObject1 = new Object();
+			//pObject1->m_pMesh		= new MeshObjFile("MeshCube.obj");
+			//pObject1->m_pMesh		= new MeshObjFile("MeshSphere.obj");
+			//pObject1->m_pMesh		= new MeshObjFile("PLANE.obj");
+			pObject1->makeMovable();
+			pObject1->m_pMesh = new MeshObjFile("MeshCube.obj");
+			pObject1->m_pTransform = new Transform(0, 0, 0, 0, 0, 0, 0.1, 0.1, 0.1);
+			pObject1->m_pMaterial = new MaterialSand(TEXTURE_FILTER_MODE_ANISOTROPIC);
+			pObject1->AddComponent(new CameraControllerBody);
 			pObject1->AddComponent("ObjectMovingController", new ObjectMovingController);
 			scene.AddObject(pObject1);
 			objects.push_back(pObject1);
@@ -139,14 +177,12 @@ public:
 					Vector3 currentPos1 = objects[i1]->m_pTransform->GetPosition();
 					Vector3 currentPos2 = objects[i2]->m_pTransform->GetPosition();
 					Vector3 delta = currentPos1 - currentPos2;
-					std::cout << dist << std::endl;
-					if (dist < 1.5) {
+					//std::cout << dist << std::endl;
+					if (dist < 1.) {
 						if(objects[i1]->movable)
 							objects[i1]->m_pTransform->Translate(delta * 0.01);
 						if (objects[i2]->movable)
 							objects[i2]->m_pTransform->Translate(-delta * 0.01);
-						//objects[i2]->m_pTransform->Translate(delta);
-						//std::cout << " COLLISION!!!" << std::endl;
 					}
 				}
 			}

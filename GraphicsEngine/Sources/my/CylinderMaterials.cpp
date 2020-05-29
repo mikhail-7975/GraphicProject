@@ -11,19 +11,15 @@ MaterialUnlitCylinder::MaterialUnlitCylinder()
 	m_psFileName = "ShaderUnlitCylinder";//						пиксельный.fs . не трогаем, такой и остаётся
 }
 
-// TODO: Реализовать переключение Graphics API при нажатии на кнопки (1 - DirectX 11, 2 - OpenGL 2.0, 9 - DirectX 9)
-// и отладить на этом механизм использования функций Init() и Deinit()
 void MaterialUnlitCylinder::Init()
 {
 	Material::Init(); //не трогать
 
-	// TODO: Нужно при компиляции скопировать папку с шейдерами
-	// Google it: "visual studio during build copy files into application folder"
 }
 
 void MaterialUnlitCylinder::Deinit()
 {
-	Material::Deinit(); //не трогать
+	Material::Deinit();
 }
 
 void MaterialUnlitCylinder::SetMaterial(const Object* pObject)
@@ -34,7 +30,7 @@ void MaterialUnlitCylinder::SetMaterial(const Object* pObject)
 	const Matrix4x4& matProj = SceneUtils::GetMatrixProj();
 
 	const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
-	const Vector4 time(Time::GetTime()/2, 0, 0, 0);
+	const Vector4 time(Time::GetTime(), 0, 0, 0);
 	
 	
 	//максимальный угол поворота
@@ -46,8 +42,7 @@ void MaterialUnlitCylinder::SetMaterial(const Object* pObject)
 	{
 		SetVertexShaderBegin();
 		SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-		SetVertexShaderVector4("time", time);//  раскомменчено
-		//установить значение в вертексном шейдере; название, значение
+		SetVertexShaderVector4("time", time);
 		SetVertexShaderMatrix4x4("matrixWorldViewProjTopMatrix", matWorldViewProjTopMatrix);
 		SetVertexShaderMatrix4x4("matrixWorldViewProjBottomMatrix", matWorldViewProjBottomMatrix);
 		SetVertexShaderVector4("constColor", Vector4(1, 1, 1, 1));

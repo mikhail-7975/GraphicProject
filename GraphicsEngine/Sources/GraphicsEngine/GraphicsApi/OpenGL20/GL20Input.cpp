@@ -85,7 +85,7 @@ void GL20Input::SetSpecialKeyUp(unsigned char key)
 void GL20Input::SetMouseButtonsEvent(int button, int state, int x, int y)
 {
 	// TODO : Task08
-	InternalInput::SetMouseButton(button, state);
+	InternalInput::SetMouseButton(button, !state);
 	InternalInput::SetMousePosition(x, y);
 	// Call InternalInput
 }

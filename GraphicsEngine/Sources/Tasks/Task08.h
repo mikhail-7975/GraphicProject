@@ -26,7 +26,7 @@ public:
 		Scene & scene = Application::Instance().GetScene();
 	
 		//camera
-		{
+		/*{
 			auto head_controller = new CameraControllerHead;
 
 			Object* Body = new Object();
@@ -42,7 +42,7 @@ public:
 			Head->AddComponent(head_controller);
 			scene.SetCamera(pCamera);
 			Head->m_pTransform->SetParent(Body->m_pTransform);
-		}
+		}*/
 		/*
 		// Object #1 - Road with 3 textures
 		{
